@@ -20,6 +20,7 @@ class SkillView(APIView):
 class JobView(APIView):
     def get(self, request):
         job_post = JobPost.objects.all()
+        print(job_post)
         jobpost_serializer = JobPostSerializer(job_post, many=True)
         return Response(jobpost_serializer.data, status=status.HTTP_200_OK)
 

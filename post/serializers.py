@@ -26,11 +26,12 @@ class JobTypeSerializer(serializers.ModelSerializer):
         
         
 class JobPostSerializer(serializers.ModelSerializer):
-    
-    
+    job_type = JobTypeSerializer(read_only=True)    
+    company = CompanySerializer(read_only=True)
     class Meta:
         model = JobPostModel
-        fields = ['job_type', 'company', 'job_description', 'salary', 'created_at', ]
+        fields = ['job_type', 'company', 'job_description', 'salary',] # 'created_at', ]
+    extra_kwargs = {'created_at': {'write_only': True},}
 
 
 
